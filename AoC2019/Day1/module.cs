@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AdventOfCode;
 
 namespace Day1
 {
@@ -12,7 +8,7 @@ namespace Day1
         public int pt2fuelcost;
         public int fuelcost;
 
-        public Module(decimal inputmass)
+        public Module(decimal inputmass) 
         {
             mass = (int)inputmass;
             fuelcost = fuelCostEquation(inputmass);
@@ -37,25 +33,20 @@ namespace Day1
         }
     }
 
-    internal class ModuleParser
+    internal class ModuleParser : ICommonProjectPart
     {
-        public void RunDay1(string filename)
+        public override void RunDay1(string filename)
         {
             List<Module> modules = CreateModules(ReadFile(filename));
             int totalfuel = modules.Sum(i => i.fuelcost);
             Console.WriteLine($"Day 1 : {totalfuel} ");
         }
 
-        public void RunDay2(string filename)
+        public override void RunDay2(string filename)
         {
             List<Module> modules = CreateModules(ReadFile(filename));
             int totalfuel = modules.Sum(i => i.pt2fuelcost);
             Console.WriteLine($"Day 2 : {totalfuel} ");
-        }
-
-        private List<string> ReadFile(string fileName)
-        {
-            return File.ReadLines(fileName).ToList<string>();
         }
 
         private List<Module> CreateModules(List<string> strings)
