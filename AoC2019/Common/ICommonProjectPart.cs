@@ -10,5 +10,12 @@
         {
             return File.ReadLines(fileName).ToList<string>();
         }
+
+        public List<T> SplitString<T>(string input, Func<string, T> converter)
+        {
+            return input.Split(',')
+                        .Select(converter)
+                        .ToList();
+        }
     }
 }
